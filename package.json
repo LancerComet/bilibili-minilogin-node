@@ -1,0 +1,16 @@
+{
+  "name": "bilibili-login",
+  "version": "1.0.0",
+  "description": "Node.JS version for Bilibili MiniLogin.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["bilibili"],
+  "author": "LancerComet",
+  "license": "MIT",
+  "dependencies": {
+    "jsencrypt": "^2.2.0",
+    "superagent": "^1.8.3"
+  }
+}
