@@ -9,8 +9,8 @@ const JSEncrypt = require("./libs/jsencript");
 
 // 在这里填入账号密码.
 const accountSettings = {
-    username: "",
-    password: ""
+    username: "INCORRECT_USERNAME",
+    password: "INCORRECT_PASSWORD"
 };
 
 var initCookie = null;
@@ -22,6 +22,7 @@ var initCookie = null;
 
 // 首次访问登录地址获取 sid 与 JSESSIONID.
 function initVisit () {
+    "use strict";
     return new Promise((resolve, reject) => {
         superAgent
             .get("https://passport.bilibili.com/ajax/miniLogin/minilogin")
@@ -38,7 +39,7 @@ function initVisit () {
                 
                 var cookies = {};
                 
-                for (var i = 0, length = rawCookies.length; i < length; i++) {
+                for (let i = 0, length = rawCookies.length; i < length; i++) {
                     rawCookies[i] = rawCookies[i].replace(";", "")
                     var cookieObj = {
                         name: rawCookies[i].match(/\S*=/)[0].replace("=", ""),
@@ -63,6 +64,8 @@ function initVisit () {
 
 // 获取 Hash 和 Key.
 function getHashandKey () {
+    "use strict";
+    
     return new Promise((resolve, reject) => {
         
         superAgent
@@ -89,6 +92,7 @@ function getHashandKey () {
 
 // 登录.
 function login (keyObj) {
+    "use strict";    
     
     // 设置加密.
     var encrypt = new JSEncrypt();
@@ -121,13 +125,23 @@ function login (keyObj) {
             
             if (!resultObj.status) {
                 console.log("登录失败：" + resultObj.message.code);
+                console.log("---")
                 console.log("-626 或 -652：用户不存在");
                 console.log("-105：验证码相关");
                 console.log("其他状态码：与密码相关.")
             } else {
                 var cookie = result.header["set-cookie"];
+                var cookieStr = "";
+                
+                for (let i = 0, length = cookie.length; i < length; i++) {
+                    cookieStr += cookie[i];
+                }
+                
+                cookieStr = cookieStr.replace(/Path=\//g, "");
+                
                 console.log("登录成功，已获取 Cookie:");
-                console.log(cookie)
+                console.log(cookieStr);
+                
             }
         })
 }
