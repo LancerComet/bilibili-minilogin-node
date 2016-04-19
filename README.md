@@ -3,9 +3,13 @@ Node.JS 的 Bilibili 快速登陆.
 
 # 使用方法
 ```
+npm install
+```
+```
+const miniLogin = require("bilibili-minilogin-node");
 const accountSettings = {
     username: "",
     password: ""
 };
+miniLogin({ username: "USERNAME", password: "PASSWORD" }, (cookie) => console.log(cookie));
 ```
-修改为自己的账号密码后运行 `node app` 即可.（需要首先运行 `npm install` 安装依赖）
