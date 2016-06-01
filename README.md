@@ -1,12 +1,12 @@
-# bilibili-minilogin-node
+# bilibili-minilogin
 Node.JS 的 Bilibili 快速登陆.
 
 # 使用方法
 ```
-npm install
+npm install bilibili-minilogin
 ```
 ```
-const miniLogin = require("bilibili-minilogin-node");
+const miniLogin = require("bilibili-minilogin");
 const accountSettings = {
     username: "",
     password: ""
