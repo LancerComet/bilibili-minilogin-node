@@ -7,9 +7,5 @@ npm install bilibili-minilogin
 ```
 ```
 const miniLogin = require("bilibili-minilogin");
-const accountSettings = {
-    username: "",
-    password: ""
-};
 miniLogin({ username: "USERNAME", password: "PASSWORD" }, (cookie) => console.log(cookie));
 ```
